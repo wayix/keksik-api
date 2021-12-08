@@ -8,7 +8,7 @@
   "devDependencies": {},
   "repository": {
     "type": "git",
-    "url": "keksik-api"
+    "url": "https://github.com/wayix/keksik-api"
   },
   "keywords": [
     "nodeJS"
