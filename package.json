@@ -1,0 +1,19 @@
+{
+  "dependencies": {
+    "axios": "^0.24.0"
+  },
+  "name": "keksik-api",
+  "version": "0.0.1",
+  "main": "index.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "keksik-api"
+  },
+  "keywords": [
+    "nodeJS"
+  ],
+  "author": "wayix",
+  "license": "ISC",
+  "description": ""
+}
