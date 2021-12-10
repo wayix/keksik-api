@@ -15,7 +15,7 @@ class API {
         const result = await this.sendRequest({
             action: 'donates/get',
             options
-		})
+	})
 
         return result;
     }
@@ -148,12 +148,12 @@ class API {
             });
             
             return result.data;
-        }
-
-        catch (e) {
-            return new Error('Error sending request:\n' + e);
-        }
 	}
+	
+	catch (e) {
+		return new Error('Error sending request:\n' + e);
+	}
+    }
 }
 
 module.exports = API;
