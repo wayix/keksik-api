@@ -3,156 +3,75 @@ const axios = require('axios');
 class API {
     constructor(options = {}) {
         this.options = options;
-
-        this.postURI = 'https://api.keksik.io/';
+        this.baseURL = 'https://api.keksik.io/';
     }
 
-    /**
-     * donates
-     */
+    async sendRequest(action, options = {}) {
+        try {
+            const result = await axios.post(`${this.baseURL}${action}`, {
+                ...this.options,
+                ...options
+            });
+            return result.data;
+        } catch (error) {
+            throw new Error('Error sending request:\n' + error);
+        }
+    }
 
+    // Donates
     async donatesGet(options = {}) {
-        const result = await this.sendRequest({
-            action: 'donates/get',
-            options
-	})
-
-        return result;
+        return await this.sendRequest('donates/get', options);
     }
 
     async donatesGetLast(options = {}) {
-        const result = await this.sendRequest({
-            action: 'donates/get-last',
-            options
-        })
-
-        return result;
+        return await this.sendRequest('donates/get-last', options);
     }
 
     async donatesChangeStatus(options = {}) {
-        const result = await this.sendRequest({
-            action: 'donates/get-last',
-            options
-        })
-
-        return result;
+        return await this.sendRequest('donates/change-status', options);
     }
 
     async donatesAnswer(options = {}) {
-        const result = await this.sendRequest({
-            action: 'donates/answer',
-            options
-        })
-
-        return result;
+        return await this.sendRequest('donates/answer', options);
     }
 
     async donatesChangeRewardStatus(options = {}) {
-        const result = await this.sendRequest({
-            action: 'donates/change-reward-status',
-            options
-        })
-
-        return result;
+        return await this.sendRequest('donates/change-reward-status', options);
     }
-    
-    /**
-     * campaigns
-     */
 
+    // Campaigns
     async campaignsGet(options = {}) {
-        const result = await this.sendRequest({
-            action: 'campaigns/get',
-            options
-        })
-
-        return result;
+        return await this.sendRequest('campaigns/get', options);
     }
 
     async campaignsGetActive(options = {}) {
-        const result = await this.sendRequest({
-            action: 'campaigns/get-active',
-            options
-        })
-
-        return result;
+        return await this.sendRequest('campaigns/get-active', options);
     }
 
     async campaignsGetRewards(options = {}) {
-        const result = await this.sendRequest({
-            action: 'campaigns/get-rewards',
-            options
-        })
-
-        return result;
+        return await this.sendRequest('campaigns/get-rewards', options);
     }
 
     async campaignsChange(options = {}) {
-        const result = await this.sendRequest({
-            action: 'campaigns/change',
-            options
-        })
-
-        return result;
+        return await this.sendRequest('campaigns/change', options);
     }
 
     async campaignsChangeReward(options = {}) {
-        const result = await this.sendRequest({
-            action: 'campaigns/change-reward',
-            options
-        })
-
-        return result;
+        return await this.sendRequest('campaigns/change-reward', options);
     }
 
-    /**
-     * payments
-     */
-
+    // Payments
     async paymentsGet(options = {}) {
-        const result = await this.sendRequest({
-            action: 'payments/get',
-            options
-        })
-
-        return result;
+        return await this.sendRequest('payments/get', options);
     }
-    
+
     async paymentsCreate(options = {}) {
-        const result = await this.sendRequest({
-            action: 'payments/create',
-            options
-        })
-
-        return result;
+        return await this.sendRequest('payments/create', options);
     }
 
-    /**
-     * balance
-     */
-
-    async balance(options = {}) {
-        const result = await this.sendRequest({
-            action: 'balance',
-            options
-        })
-
-        return result;
-    }
-
-    async sendRequest(url = {}) {
-        try {
-            const result = await axios.post(`https://api.keksik.io/${url.action}`, {
-                ...this.options,
-                ...url.options
-            });
-            
-            return result.data;
-	}
-	
-	catch (e) {
-		return new Error('Error sending request:\n' + e);
-	}
+    // Balance
+    async getBalance(options = {}) {
+        return await this.sendRequest('balance', options);
     }
 }
 
